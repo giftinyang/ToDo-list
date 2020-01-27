@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue class</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <table class="table border">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">email</th>
+                  <th scope="col">city</th>
+                  <th scope="col">Score</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(person,index) in persons">
+                  <th scope="row">{{parseInt(index) +1}}</th>
+                  <td>{{person.name}}</td>
+                  <td>{{person.role}}</td>
+                  <td>{{person.email}}</td>
+                  <td>{{person.city}}</td>
+                  <td>{{person.Score}}</td>
+                  
+                  <td>
+                    <button class="btn btn-danger" @click="removeItem(index)">
+                      Delete
+                    </button>
+                    <button class="btn btn-info" @click="updateItem(person)">
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-4">
+            <div class="card shadow p-4">
+              <h2 class="mb-4">Please Add New Users</h2>
+              <!-- <p>Your name is {{user.name}} and your role is {{user.role}}</p> -->
+              <form @submit.prevent="addUser">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input v-model="user.name" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>Role</label>
+                  <input v-model="user.role" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>email</label>
+                  <input v-model="user.email" type="email" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>city</label>
+                  <input v-model="user.city" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>Score</label>
+                  <input v-model="user.Score" type="number" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <button v-if='status'type="submit" class="btn btn-primary ml-3">
+                    Submit
+                  </button>
+                  <button v-else @click='updatePerson' type="button" class="btn btn-secondary">
+                    Update
+                  </button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+                <div class="div">
+                  <p>The total score is {{totalScore}}</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+    <!-- <script src="main.js"></script> -->
+  </body>
+</html>
